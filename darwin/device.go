@@ -16,7 +16,7 @@ import (
 )
 
 const (
-	evtStateChanged               = 6
+	evtStateChanged               = 4
 	evtAdvertisingStarted         = 16
 	evtAdvertisingStopped         = 17
 	evtServiceAdded               = 18
@@ -77,8 +77,8 @@ func NewDevice(opts ...Option) (*Device, error) {
 		return nil, err
 	}
 
-	d.pm = xpc.XpcConnect("com.apple.blued", d)
-	d.cm = xpc.XpcConnect("com.apple.blued", d)
+	d.pm = xpc.XpcConnect("com.apple.bluetoothd", d)
+	d.cm = xpc.XpcConnect("com.apple.bluetoothd", d)
 
 	return d, errors.Wrap(d.Init(), "can't init")
 }
